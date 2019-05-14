@@ -4,10 +4,9 @@
 
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { 
-	View, 
+import {
 	Text, 
-	Linking, 
+	Linking,
 	Platform
 } from 'react-native'
 import mdurl from 'mdurl';
@@ -33,21 +32,21 @@ class Hyperlink extends Component {
     delete viewProps.linkDefault
     delete viewProps.onLongPress
     delete viewProps.linkStyle
-		
+
     return (
-      <View { ...viewProps } style={ this.props.style }>
+      <Text { ...viewProps } style={ this.props.style }>
         { !this.props.onPress && !this.props.onLongPress && !this.props.linkStyle
           ? this.props.children
           : this.parse(this).props.children }
-      </View>
+      </Text>
     )
   }
 
   isTextNested(component) {
-    if (!React.isValidElement(component)) 
+    if (!React.isValidElement(component))
       throw new Error('Invalid component')
     let { type: { displayName } = {} } = component
-    if (displayName !== 'Text') 
+    if (displayName !== 'Text')
       throw new Error('Not a Text component')
     return typeof component.props.children !== 'string'
   }
@@ -80,7 +79,7 @@ class Hyperlink extends Component {
 
         const clickHandlerProps = {}
         if (OS !== 'web') {
-          clickHandlerProps.onLongPress = this.props.onLongPress 
+          clickHandlerProps.onLongPress = this.props.onLongPress
             ? () => this.props.onLongPress(url, text)
             : undefined
         }
@@ -157,7 +156,7 @@ export default class extends Component {
 
   render () {
     const onPress = this.handleLink || this.props.onPress
-	if (this.props.linkDefault) 
+	if (this.props.linkDefault)
 		return <Hyperlink { ...this.props } onPress={ onPress }/>
     return <Hyperlink { ...this.props } />
   }

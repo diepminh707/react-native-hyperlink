@@ -71,7 +71,7 @@ var Hyperlink = function (_Component) {
       delete viewProps.linkStyle;
 
       return _react2.default.createElement(
-        _reactNative.View,
+        _reactNative.Text,
         _extends({}, viewProps, { style: this.props.style }),
         !this.props.onPress && !this.props.onLongPress && !this.props.linkStyle ? this.props.children : this.parse(this).props.children
       );
